@@ -24,6 +24,11 @@ install_tf "$TF_VERSION"
 # This shouldn't be needed for Python2
 sudo apt-get install -qq -y libpython${PY_VERSION}-dev
 
+# Tests will fail with latest Numpy version (1.6.1) and latest scipy version
+# (1.2.1) and tf nightly. Pin the version to 1.1.0 which is used by tensorflow
+# kokoro too.
+pip install scipy==1.1.0
+
 # Make sure we have the latest version of numpy - avoid problems we were
 # seeing with Python 3
 pip install -q -U numpy
